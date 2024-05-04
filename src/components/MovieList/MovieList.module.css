@@ -5,9 +5,11 @@
   background: linear-gradient(to left, #f8ab8d 0%, white, #f8ab8d);
   border-bottom: 1px solid grey;
   border-radius: 15px;
-  color: rgb(90, 79, 26);
   font-size: 20px;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 5px;
   width: 700px;
+}
+.listItem a {
+  color: rgb(90, 79, 26);
 }
