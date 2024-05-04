@@ -1,22 +1,23 @@
 .castList {
   display: flex;
   gap: 10px;
-  flex-direction: column;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
 }
 .castItem {
   border: 1px dotted beige;
-  width: 90px;
-  height: fit-content;
+  width: 180px;
+  height: 320px;
   padding: 5px;
   margin-bottom: 10px;
   text-align: center;
   justify-content: space-between;
 }
 .actorImg {
-  object-fit: contain;
-  width: 70px;
-  height: 120px;
+  width: 100%;
+  height: auto;
   padding-bottom: 0px;
+  margin-bottom: 0;
 }
 .role {
   font-size: 10px;

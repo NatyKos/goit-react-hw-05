@@ -1,8 +1,13 @@
 import { getFilmDetails } from '../../search-films-api';
 import { useState, useEffect } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, NavLink, Outlet } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
-import css from './MovieDetails.module.css';
+import css from './MovieDetailsPage.module.css';
+import clsx from 'clsx';
+
+const getNavLinkClass = ({ isActive }) => {
+  return clsx(css.link, isActive && css.active);
+};
 
 export default function MovieDetailsPage() {
   const [loading, setLoading] = useState(false);
@@ -51,12 +56,16 @@ export default function MovieDetailsPage() {
         </div>
       )}
       <h3> Aditional information</h3>
-      <ul>
+      <ul className={css.aditionalList}>
         <li>
-          <Link to="cast">Cast</Link>
+          <NavLink className={getNavLinkClass} to="cast">
+            Cast
+          </NavLink>
         </li>
         <li>
-          <Link to="reviews">Reviews</Link>
+          <NavLink className={getNavLinkClass} to="reviews">
+            Reviews
+          </NavLink>
         </li>
       </ul>
       <Outlet />

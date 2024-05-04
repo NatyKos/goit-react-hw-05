@@ -31,3 +31,9 @@ export async function getMovieCast(id) {
   const url = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
   return await axios.get(url, options);
 }
+
+// reviews
+export async function getMovieReview(id) {
+  const url = `https://api.themoviedb.org/3/movie/${id}/reviews?language=en-US&page=1`;
+  return await axios.get(url, options);
+}
