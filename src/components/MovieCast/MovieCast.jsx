@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getMovieCast } from '../../search-films-api';
 import { useParams } from 'react-router-dom';
 import Loader from '../Loader/Loader';
+import css from './MovieCast.module.css';
 
 export default function MovieCast() {
   const [loading, setLoading] = useState(false);
@@ -26,17 +27,18 @@ export default function MovieCast() {
   return (
     <div>
       {cast && (
-        <ul>
-          {cast.map(cast => {
-            <li key={cast.cast_id}>
-              <h4>{cast.name}</h4>
-              <p>{cast.character}</p>
+        <ul className={css.castList}>
+          {cast.map(actor => (
+            <li className={css.castItem} key={actor.cast_id}>
+              <p className={css.name}>{actor.name}</p>
+              <p className={css.role}>{actor.character}</p>
               <img
-                src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`}
+                className={css.actorImg}
+                src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
                 alt="actor photo"
               />
-            </li>;
-          })}
+            </li>
+          ))}
         </ul>
       )}
       {loading && <Loader />}
