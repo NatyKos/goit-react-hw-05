@@ -1,6 +1,6 @@
 import { getFilmDetails } from '../../search-films-api';
-import { useState, useEffect } from 'react';
-import { useParams, NavLink, Outlet } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { useParams, NavLink, Outlet, useLocation } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import css from './MovieDetailsPage.module.css';
 import clsx from 'clsx';
@@ -14,6 +14,8 @@ export default function MovieDetailsPage() {
   const [error, setError] = useState(false);
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
+  const location = useLocation();
+  const backLinkRef = useRef(location.state ?? '/movies');
 
   useEffect(() => {
     async function getDetails() {
@@ -32,6 +34,9 @@ export default function MovieDetailsPage() {
 
   return (
     <div className={css.details}>
+      <NavLink className={getNavLinkClass} to={backLinkRef.current}>
+        Go back
+      </NavLink>
       {movieDetails && (
         <div className={css.detailsContainer}>
           <img

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import MovieList from '../../components/MovieList/MovieList';
 import Loader from '../../components/Loader/Loader';
-// import css from './MoviePage.module.css';
 import SearchForm from '../../components/SearchForm/SearchForm';
 
 export default function MoviesPage() {
