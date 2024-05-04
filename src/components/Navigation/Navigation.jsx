@@ -12,7 +12,7 @@ export default function Navigation() {
         Homepage
       </NavLink>
       <NavLink to="/movies" className={getNavLinkClass}>
-        Movies search
+        Movies
       </NavLink>
     </nav>
   );

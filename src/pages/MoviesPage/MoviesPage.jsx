@@ -4,6 +4,8 @@ import { useSearchParams } from 'react-router-dom';
 import MovieList from '../../components/MovieList/MovieList';
 import Loader from '../../components/Loader/Loader';
 import SearchForm from '../../components/SearchForm/SearchForm';
+import toast from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 export default function MoviesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,11 +18,20 @@ export default function MoviesPage() {
       return;
     }
     async function searchMovie() {
+      const notify = () =>
+        toast.error('Sorry, we can not find your film', {
+          duration: 2000,
+          position: 'top-left',
+          style: {
+            backgroundColor: '#2e2a01',
+            color: '#f3b399',
+          },
+        });
       try {
         setLoading(true);
         const searchFilm = await getRequestedFilm(searchParams.get('query'));
         if (searchFilm.data.results.length === 0) {
-          return alert('Sorry, we can not find your film');
+          notify();
         }
         setRequestedFilm(searchFilm.data.results);
       } catch (error) {
@@ -37,6 +48,7 @@ export default function MoviesPage() {
   };
   return (
     <>
+      <Toaster />
       <SearchForm onSubmit={handleSubmit} />
       {requestedFilm.length > 0 && <MovieList movies={requestedFilm} />}
       {loading && <Loader />}

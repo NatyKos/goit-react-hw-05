@@ -1,5 +1,5 @@
 import { getFilmDetails } from '../../search-films-api';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { useParams, NavLink, Outlet, useLocation } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import css from './MovieDetailsPage.module.css';
@@ -73,7 +73,9 @@ export default function MovieDetailsPage() {
           </NavLink>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
       {loading && <Loader />}
       {error && <p>Please restart the page</p>}
     </div>
